@@ -1,6 +1,6 @@
 {
   "name": "app",
-  "version": "0.0.9",
+  "version": "0.1.2",
   "private": true,
   "description": "> TODO: description",
   "author": "zhangzhihua <zhangzhihua01@58ganji.com>",
@@ -15,14 +15,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@igit.58corp.com:node/ursa.git"
+    "url": "git+https://github.com/Ursajs/Ursa.git"
   },
   "scripts": {
     "app": "ts-node-dev src/app.ts"
   },
   "dependencies": {
-    "@ursajs/core": "^0.0.9",
-    "@ursajs/router": "^0.0.9",
+    "@ursajs/core": "^0.1.2",
+    "@ursajs/router": "^0.1.2",
     "koa": "^2.11.0",
     "koa-views": "^6.2.1",
     "nunjucks": "^3.2.0"

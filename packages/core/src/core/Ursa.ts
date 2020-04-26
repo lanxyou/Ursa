@@ -26,10 +26,9 @@ let instance: Ursa = null;
 
 export default class Ursa {
     private constructor(readonly options: TUrsaOption) {
-        console.assert(options && options.ROOT, `Ursa options.assert must set value. e.g { ROOT: './src' }, now ${JSON.stringify(options)}`);
+        console.assert(options && options.ROOT, `Ursa options.ROOT must set value. e.g { ROOT: './src' }, now ${JSON.stringify(options)}`);
 
         this.options = mixin(true, {
-            bodyParser: true,
             jsonpBody: {},
             configPath: path.resolve(options.ROOT, 'config'),
             env: process.env.NODE_ENV,
@@ -122,9 +121,9 @@ export default class Ursa {
 
         const { app, options: { createServer, Router, beforeLoad, afterLoaded } } = this;
 
-        mixin(true, app.request, Request);
-        mixin(true, app.response, Response);
-        mixin(true, app.context, Context);
+        mixin(false, app.request, Request);
+        mixin(false, app.response, Response);
+        mixin(false, app.context, Context);
 
         if (typeHelper.isFunction(beforeLoad)) await Promise.resolve(Reflect.apply(beforeLoad, this, [this]));
 
@@ -156,12 +155,50 @@ export default class Ursa {
         Ursa.instance().use(mw);
     }
 
+    static get env() {
+        return Ursa.instance().env;
+    }
+
+    static get app() {
+        return Ursa.instance().app;
+    }
+
+    static get server() {
+        return Ursa.instance().server;
+    }
+
     static get options() {
         return Ursa.instance().options;
     }
 
     static get config() {
         return ConfigLoader.config;
+    }
+
+    static get pluginConfig() {
+        return ConfigLoader.config.plugin;
+    }
+
+    static get pluginKeys() {
+        const pluginKeys = [];
+
+        for (const [name, config] of Object.entries(Ursa.config.plugin)) {
+            if (config === true) {
+                pluginKeys.push(name);
+            } else if (config === false) {
+                continue;
+            } else if (config.enable === true) {
+                pluginKeys.push(name);
+            }
+        }
+
+        return pluginKeys;
+    }
+
+    static pluginOptions(pluginName: string) {
+        const pluginCfg = Ursa.config.plugin[pluginName];
+
+        return typeHelper.isBoolean(pluginCfg) ? {} : pluginCfg.options;
     }
 
     static get context() {

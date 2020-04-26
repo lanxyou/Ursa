@@ -1,6 +1,6 @@
 {
   "name": "@ursajs/core",
-  "version": "0.0.9",
+  "version": "0.1.2",
   "description": "> TODO: description",
   "author": "zhangzhihua <zhangzhihua01@58ganji.com>",
   "license": "ISC",
@@ -18,15 +18,16 @@
   },
   "scripts": {
     "fix": "esw src --fix --ext .ts",
-    "lint": "esw src --ext .ts",
-    "lint-w": "esw src --clear -w --ext .ts",
+    "lint": "eslint src --ext .ts",
+    "lint-w": "esw src --clear --color -w --ext .ts",
     "build-w": "tsc -w --inlineSourceMap",
     "start": "run-p lint-w build-w",
-    "prebuild": "esw src --ext .ts",
+    "prebuild": "npm run lint",
     "build": "tsc",
     "prepublish": "npm run build"
   },
   "dependencies": {
+    "@types/koa-send": "^4.1.2",
     "array.prototype.flat": "^1.2.2",
     "koa-body": "^4.1.1"
   },
@@ -34,7 +35,6 @@
     "@types/array.prototype.flat": "^1.2.0",
     "@types/jest": "^24.0.24",
     "@types/koa": "^2.0.51",
-    "@types/koa-send": "^4.1.2",
     "@types/node": "^10.12.15",
     "@typescript-eslint/eslint-plugin": "^2.25.0",
     "@typescript-eslint/parser": "^2.25.0",

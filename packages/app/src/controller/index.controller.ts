@@ -16,7 +16,9 @@ export default class Index extends BaseController {
 
     index() {
         console.log(this.userService.getDefaultUserAge());
-        return Result.view('index.html', { test: this.testService.return1() })
+        return Result.view('index.html', {
+            frameName: this.testService.returnFrameName(),
+        });
     }
 
     @Path('/reg/:name*')
@@ -36,7 +38,13 @@ export default class Index extends BaseController {
     }
 
     @Path('/test', '/static/test2')
-    test() {
+    async test() {
+        console.log('>>>');
+
+        await new Promise(resolve => setTimeout(resolve, 3000));
+
+        console.log('<<<');
+
         return Result.send('this is static router');
     }
 
