@@ -1,20 +1,16 @@
 {
-  "name": "@ursajs/cli",
-  "version": "0.1.3",
-  "description": "ursa cli",
-  "author": "",
+  "name": "@ursajs/plugin-static",
+  "version": "0.1.4",
+  "description": "> TODO: description",
+  "author": "zhangzhihua <zhangzhihua01@58ganji.com>",
   "license": "ISC",
+  "main": "lib/index.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
   },
-  "bin": {
-    "ursa": "./bin/index.js",
-    "ursajs": "./bin/index.js"
-  },
   "files": [
     "lib",
-    "bin",
     "index.d.ts"
   ],
   "publishConfig": {
@@ -32,14 +28,13 @@
     "prepublish": "npm run build"
   },
   "dependencies": {
-    "commander": "^3.0.2",
-    "inquirer": "^7.0.0",
-    "ora": "^4.0.2",
-    "simple-git": "^1.129.0"
+    "koa-static": "^5.0.0"
   },
   "devDependencies": {
-    "@types/inquirer": "^6.5.0",
-    "@types/node": "^10.14.9",
+    "@types/jest": "^24.0.24",
+    "@types/koa": "^2.0.51",
+    "@types/koa-static": "^4.0.1",
+    "@types/node": "^10.12.15",
     "@typescript-eslint/eslint-plugin": "^2.25.0",
     "@typescript-eslint/parser": "^2.25.0",
     "eslint": "^5.16.0",
@@ -49,8 +44,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-typescript": "^0.14.0",
     "eslint-watch": "^6.0.1",
-    "npm-run-all": "^4.1.5",
-    "typescript": "^3.5.1"
+    "npm-run-all": "^4.1.5"
   },
   "repository": {
     "type": "git",
